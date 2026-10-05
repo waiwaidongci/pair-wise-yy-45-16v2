@@ -1,6 +1,6 @@
 import type { Sample } from './types'
 
-const measurements = (offset = 0) => [
+export const measurements = (offset = 0) => [
   { key: 'chest', name: '胸围', spec: 108, actual: 108 + offset, tolerance: 1.5 },
   { key: 'waist', name: '腰围', spec: 94, actual: 94 + offset * 0.7, tolerance: 1.5 },
   { key: 'hem', name: '下摆围', spec: 112, actual: 112 + offset * 1.2, tolerance: 2 },

@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { Annotation, Sample } from '../api/types'
+import type { Annotation, Sample, SupplierReceipt } from '../api/types'
 
 export const samplingApi = createApi({
   reducerPath: 'samplingApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/' }),
-  tagTypes: ['Sample', 'Samples'],
+  tagTypes: ['Sample', 'Samples', 'SupplierReceipts'],
   endpoints: (builder) => ({
     getSamples: builder.query<Sample[], void>({
       query: () => 'api/samples',
@@ -30,7 +30,34 @@ export const samplingApi = createApi({
       }),
       invalidatesTags: (_result, _error, { sampleId }) => [{ type: 'Sample', id: sampleId }],
     }),
+    getSupplierReceipts: builder.query<SupplierReceipt[], void>({
+      query: () => 'api/supplier/receipts',
+      providesTags: ['SupplierReceipts'],
+    }),
+    pushSupplierReceipt: builder.mutation<SupplierReceipt, Partial<SupplierReceipt>>({
+      query: (body) => ({
+        url: 'api/supplier/receipts/push',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['SupplierReceipts'],
+    }),
+    processSupplierReceipt: builder.mutation<SupplierReceipt, string>({
+      query: (id) => ({
+        url: `api/supplier/receipts/${id}/process`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['SupplierReceipts'],
+    }),
   }),
 })
 
-export const { useGetSamplesQuery, useGetSampleQuery, useAddAnnotationMutation, useAddCommentMutation } = samplingApi
+export const {
+  useGetSamplesQuery,
+  useGetSampleQuery,
+  useAddAnnotationMutation,
+  useAddCommentMutation,
+  useGetSupplierReceiptsQuery,
+  usePushSupplierReceiptMutation,
+  useProcessSupplierReceiptMutation,
+} = samplingApi

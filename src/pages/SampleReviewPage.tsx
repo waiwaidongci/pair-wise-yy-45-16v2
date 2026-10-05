@@ -27,7 +27,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined'
 import AddLocationAltOutlinedIcon from '@mui/icons-material/AddLocationAltOutlined'
 import PhotoCameraBackOutlinedIcon from '@mui/icons-material/PhotoCameraBackOutlined'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
-import { decideProposal, saveDraft, setRounds, toggleAnnotation } from '../features/developmentSlice'
+import { addAnnotation, decideProposal, saveDraft, setRounds, toggleAnnotation } from '../features/developmentSlice'
 
 const rounds = ['第一轮', '第二轮', '第三轮'] as const
 
@@ -269,7 +269,7 @@ export default function SampleReviewPage() {
             variant="contained"
             disabled={!annotationDraft.part.trim() || !annotationDraft.content.trim()}
             onClick={() => {
-              sample.annotations.push({ id: `AN-${Date.now()}`, author: '当前用户', status: '待处理', ...annotationDraft })
+              dispatch(addAnnotation({ sampleId: sample.id, annotation: annotationDraft }))
               setAnnotationDraft({ x: 50, y: 42, part: '版型', content: '' })
               setAnnotationOpen(false)
             }}
