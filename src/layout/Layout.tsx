@@ -18,6 +18,7 @@ import CheckroomIcon from '@mui/icons-material/Checkroom'
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined'
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined'
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined'
+import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined'
 import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined'
 import CloudDoneOutlinedIcon from '@mui/icons-material/CloudDoneOutlined'
 
@@ -25,6 +26,7 @@ const nav = [
   { to: '/', label: '开发总览', icon: <DashboardOutlinedIcon /> },
   { to: '/styles', label: '款式档案', icon: <Inventory2OutlinedIcon /> },
   { to: '/review', label: '样品评审', icon: <CompareArrowsOutlinedIcon /> },
+  { to: '/batches', label: '交样批次', icon: <LocalShippingOutlinedIcon /> },
   { to: '/history', label: '修订历史', icon: <HistoryOutlinedIcon /> },
 ]
 

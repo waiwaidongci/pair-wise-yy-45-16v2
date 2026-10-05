@@ -4,7 +4,7 @@ import type { Annotation, Sample } from '../api/types'
 export const samplingApi = createApi({
   reducerPath: 'samplingApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/' }),
-  tagTypes: ['Sample', 'Samples'],
+  tagTypes: ['Sample', 'Samples', 'Batches', 'PendingWrites'],
   endpoints: (builder) => ({
     getSamples: builder.query<Sample[], void>({
       query: () => 'api/samples',
